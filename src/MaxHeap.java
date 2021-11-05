@@ -16,6 +16,7 @@ public final class MaxHeap<T extends Comparable<? super T>>
    private boolean integrityOK = false;
 	private static final int DEFAULT_CAPACITY = 25;
 	private static final int MAX_CAPACITY = 10000;
+    public static int counter = 0;
    
    public MaxHeap()
    {
@@ -75,6 +76,7 @@ public final class MaxHeap<T extends Comparable<? super T>>
          heap[newIndex] = heap[parentIndex];
          newIndex = parentIndex;
          parentIndex = newIndex / 2;
+         counter++;
       } // end while
 
       heap[newIndex] = newEntry;
@@ -137,19 +139,22 @@ public final class MaxHeap<T extends Comparable<? super T>>
    }
 
    public static void sequentialInsert() throws IOException {
-      File output = new File("src/output.txt");
-      PrintWriter pw = new PrintWriter(output);
       File file = new File("src/data_sorted.txt");
       Scanner x = new Scanner(file);
       MaxHeap<Integer> addMaxHeap = new MaxHeap<>(1000);
       while(x.hasNextLine()) {
          addMaxHeap.add(Integer.valueOf(x.nextLine()));
       }
+      File output = new File("src/output.txt");
+      PrintWriter pw = new PrintWriter(output);
       pw.write("Heap built using sequential insertions:" + addMaxHeap.getTen());
       pw.println();
-      pw.write("Number of swaps in the heap creation:");
+      pw.write("Number of swaps in the heap creation:" + Integer.toString(counter));
       pw.println();
-      pw.write("Heap after 10 removals:");
+      for(int i = 0; i < 10; i++){
+         addMaxHeap.removeMax();
+      }
+      pw.write("Heap after 10 removals:" + addMaxHeap.getTen());
 
       pw.close();
    }
