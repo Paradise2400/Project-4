@@ -1,4 +1,6 @@
 import java.util.Arrays;
+import java.util.*;
+import java.io.*;
 /**
    A class that implements the ADT maxheap by using an array.
  
@@ -124,10 +126,36 @@ public final class MaxHeap<T extends Comparable<? super T>>
       } // end while
       lastIndex = 0;
    } // end clear
+
+   public String getTen(){
+      String ten = "";
+      for(int i = 1; i < 11; i++){
+         ten += " ";
+         ten += heap[i];
+      }
+      return ten;
+   }
+
+   public static void sequentialInsert() throws IOException {
+      File output = new File("src/output.txt");
+      PrintWriter pw = new PrintWriter(output);
+      File file = new File("src/data_sorted.txt");
+      Scanner x = new Scanner(file);
+      MaxHeap<Integer> addMaxHeap = new MaxHeap<>(1000);
+      while(x.hasNextLine()) {
+         addMaxHeap.add(Integer.valueOf(x.nextLine()));
+      }
+      pw.write("Heap built using sequential insertions:" + addMaxHeap.getTen());
+      pw.println();
+      pw.write("Number of swaps in the heap creation:");
+      pw.println();
+      pw.write("Heap after 10 removals:");
+
+      pw.close();
+   }
    
 // Private methods
-private void reheap(int rootIndex)
-{
+private void reheap(int rootIndex) {
    boolean done = false;
    T orphan = heap[rootIndex];
    int leftChildIndex = 2 * rootIndex;
@@ -154,7 +182,5 @@ private void reheap(int rootIndex)
    } // end while
 
    heap[rootIndex] = orphan;
-
-
 } // end reheap
 } // end MaxHeap
