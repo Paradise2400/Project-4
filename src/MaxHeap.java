@@ -138,25 +138,12 @@ public final class MaxHeap<T extends Comparable<? super T>>
       return ten;
    }
 
-   public static void sequentialInsert() throws IOException {
-      File file = new File("src/data_sorted.txt");
+   public void sequentialInsert(String fileName) throws FileNotFoundException {
+      File file = new File(fileName);
       Scanner x = new Scanner(file);
-      MaxHeap<Integer> addMaxHeap = new MaxHeap<>(1000);
-      while(x.hasNextLine()) {
-         addMaxHeap.add(Integer.valueOf(x.nextLine()));
+      while(x.hasNextLine()){
+         this.add((T)Integer.valueOf(x.nextLine()));
       }
-      File output = new File("src/output.txt");
-      PrintWriter pw = new PrintWriter(output);
-      pw.write("Heap built using sequential insertions:" + addMaxHeap.getTen());
-      pw.println();
-      pw.write("Number of swaps in the heap creation:" + Integer.toString(counter));
-      pw.println();
-      for(int i = 0; i < 10; i++){
-         addMaxHeap.removeMax();
-      }
-      pw.write("Heap after 10 removals:" + addMaxHeap.getTen());
-
-      pw.close();
    }
    
 // Private methods
