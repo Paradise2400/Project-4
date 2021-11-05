@@ -32,7 +32,7 @@ public class Driver {
         pw.write("Number of swaps in the heap creation:");
         pw.println();
         for(int i = 0; i < 10; i++){
-            addMaxHeap.removeMax();
+            addMaxHeap2.removeMax();
         }
         pw.write("Heap after 10 removals:" + addMaxHeap2.getTen());
 
