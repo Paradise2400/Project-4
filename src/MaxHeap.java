@@ -16,8 +16,8 @@ public final class MaxHeap<T extends Comparable<? super T>>
    private boolean integrityOK = false;
 	private static final int DEFAULT_CAPACITY = 25;
 	private static final int MAX_CAPACITY = 10000;
-    public static int counter = 0;
-   
+    public int counter = 0;
+
    public MaxHeap()
    {
       this(DEFAULT_CAPACITY); // Call next constructor
@@ -138,11 +138,9 @@ public final class MaxHeap<T extends Comparable<? super T>>
       return ten;
    }
 
-   public void sequentialInsert(String fileName) throws FileNotFoundException {
-      File file = new File(fileName);
-      Scanner x = new Scanner(file);
-      while(x.hasNextLine()){
-         this.add((T)Integer.valueOf(x.nextLine()));
+   public void sequentialInsert(T arr[]){
+      for(int i = 0; i < arr.length; i++){
+         this.add(arr[i]);
       }
    }
 
