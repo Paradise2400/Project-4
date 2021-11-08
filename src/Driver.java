@@ -54,6 +54,36 @@ public class Driver {
             addMaxHeap2.removeMax();
         }
         pw.write("Heap after 10 removals:" + addMaxHeap2.getTen());
+        pw.println();
+        pw.println();
+        pw.println();
+
+        //Optimal Method test using data_sorted
+        MaxHeap<Integer> addMaxHeap3 = new MaxHeap<>(1000);
+        addMaxHeap3.optimalMethod(testArray);
+        pw.write("Heap built using optimal method:" + addMaxHeap3.getTen());
+        pw.println();
+        pw.write("Number of swaps in the heap creation:" + addMaxHeap3.counter);
+        pw.println();
+        for(int i = 0; i < 10; i++){
+            addMaxHeap3.removeMax();
+        }
+        pw.write("Heap after 10 removals:" + addMaxHeap3.getTen());
+        pw.println();
+        pw.println();
+        pw.println();
+
+        //Optimal Method test using data_random
+        MaxHeap<Integer> addMaxHeap4 = new MaxHeap<>(1000);
+        addMaxHeap4.optimalMethod(testArray2);
+        pw.write("Heap built using optimal method:" + addMaxHeap4.getTen());
+        pw.println();
+        pw.write("Number of swaps in the heap creation:" + addMaxHeap4.counter);
+        pw.println();
+        for(int i = 0; i < 10; i++){
+            addMaxHeap4.removeMax();
+        }
+        pw.write("Heap after 10 removals:" + addMaxHeap4.getTen());
 
         pw.close();
     }

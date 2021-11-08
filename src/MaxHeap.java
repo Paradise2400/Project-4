@@ -144,19 +144,11 @@ public final class MaxHeap<T extends Comparable<? super T>>
       }
    }
 
-   public void optimalMethod(String filename) throws FileNotFoundException {
-      File file = new File(filename);
-      Scanner x = new Scanner(file);
-      //I'll just add directly to the heap variable
-      int i = 0;
-      while(x.hasNextLine()) {
-         heap[i] = (T)Integer.valueOf(x.nextLine());
-         i++;
-         //resize if the array is the wrong size
-         if (i >= heap.length) heap = Arrays.copyOf(heap, heap.length * 2);
-      }
-      //define rootIndex and lastIndex
-      lastIndex = i;
+   public void optimalMethod(T arr[]) {
+      for (int index = 0; index < arr.length; index++)
+         heap[index + 1] = arr[index];
+      //lastIndex
+      lastIndex = arr.length;
       // Create heap
       for (int rootIndex = lastIndex / 2; rootIndex > 0; rootIndex--)
          reheap(rootIndex);
@@ -182,6 +174,7 @@ private void reheap(int rootIndex) {
       if (orphan.compareTo(heap[largerChildIndex]) < 0)
       {
          heap[rootIndex] = heap[largerChildIndex];
+         counter++;
          rootIndex = largerChildIndex;
          leftChildIndex = 2 * rootIndex;
       }
